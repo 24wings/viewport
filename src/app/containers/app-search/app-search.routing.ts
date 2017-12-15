@@ -1,0 +1,17 @@
+// import { PlaylistResolver, PlaylistVideosResolver } from '../../shared/components/playlist-view';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { YoutubeVideosComponent } from './youtube-videos.component';
+import { AppSearchComponent } from './app-search.component';
+import { YoutubePlaylistsComponent } from './youtube-playlists.component';
+import {YoukuVideosComponent} from './youku-videos/youku-videos.component';
+export const routing: ModuleWithProviders = RouterModule.forChild([
+  { path: 'search', component: AppSearchComponent,
+    children: [
+    { path: '', redirectTo: 'videos', pathMatch: 'full' },
+    { path: 'videos', component: YoutubeVideosComponent },
+    { path: 'playlists', component: YoutubePlaylistsComponent },
+    {path:'youku-videos',component:YoukuVideosComponent}
+  ]}
+]);

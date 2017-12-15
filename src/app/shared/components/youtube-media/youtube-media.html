@@ -1,0 +1,77 @@
+<section class="youtube-item card ux-maker" [class.show-description]="showDesc">
+    <section class="media-title">
+
+        <div class="front face">
+            <div class="indicators clearfix">
+
+                <span class="pull-left item-is-playing">
+					<i class="fa fa-play"></i>Now Playing
+				</span>
+
+            </div>
+
+            <div rel="tooltip" class="media-thumb" [tooltip]="media.snippet.title" (click)="playVideo(media)">
+
+                <div class="thumbnail">
+                    <img class="thumb-image" [src]="thumb">
+                </div>
+
+                <section class="stats">
+                    <span class="item-duration item-action pull-right">
+						<i class="fa fa-clock-o"></i> {{ media.contentDetails?.duration | toFriendlyDuration }}
+					</span>
+
+                    <span class="item-likes item-action" rel="tooltip" title="Likes">
+						<i class="fa fa-thumbs-up"></i> {{ media.statistics?.likeCount | number:'2.0'}}
+					</span>
+
+                    <span class="item-views item-action" rel="tooltip" title="Views">
+						<i class="fa fa-eye"></i> {{ media.statistics?.viewCount | number:'2.0'}}
+					</span>
+                </section>
+
+                <button class="btn btn-default btn-lg ux-maker play-media">
+					<i class="fa fa-play"></i>
+				</button>
+            </div>
+
+            <section class="item-actions main-actions">
+                <h4 class="title span11">
+                    <a href='#/video/' rel="tooltip" class="media-thumb ellipsis" [tooltip]="media.snippet.title">
+						{{ media.snippet.title }}
+					</a>
+                </h4>
+                <section class="media-actions">
+                    <button *ngIf="!status.queued" class="btn btn-link" tooltip="Queue this video to now playlist" (click)="queueVideo(media)">
+						<i class="fa fa-share"></i> 添加
+					</button>
+                    <button *ngIf="status.queued" class="btn btn-danger" tooltip="Queue this video to now playlist" (click)="removeVideoFromQueue(media)">
+						<i class="fa fa-trash"></i> 移除
+					</button>
+                    <button class="btn btn-link add-to-playlist" disabled tooltip="Add this video to a playlist" (click)="addVideo(media)">
+						<i class="fa fa-plus"></i> Add
+					</button>
+                    <span class="is-strechable"></span>
+                    <button (click)="toggle(showDesc)" class="btn btn-xs btn-info fa fa-info-circle" tooltip="详细信息">
+					</button>
+                </section>
+            </section>
+        </div>
+
+        <div class="description back face">
+            <h4>
+                <a href='https://youtube.com/watch?v={{ media.id }}' target="_blank" tooltip="Open in YouTube" class="media-thumb">
+                    <i class="fa fa-youtube"></i> {{ media.snippet.title}}</a>
+            </h4>
+            <div>{{ media.snippet.description }}</div>
+        </div>
+
+        <section class="item-actions close-desc">
+            <button (click)="toggle(showDesc)" class="btn btn-info btn-xs " tooltip="flip back...">
+				<i class="fa fa-times-circle"></i>
+			</button>
+        </section>
+
+    </section>
+
+</section>

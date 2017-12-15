@@ -1,0 +1,54 @@
+<button class="btn btn-navbar btn-link ux-maker btn-toggle" (click)="toggleMenu()">
+国家 &nbsp;&nbsp;<i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp;中国 
+</button>
+<button class="btn btn-navbar btn-link ux-maker btn-toggle" (click)="toggleMenu()">
+  语言 &nbsp;&nbsp;<i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp;汉语
+  </button>
+
+
+<div class="panel panel-default menu-dropdown" [class.slideInDown]="!hide">
+    <div class="menu-backdrop" *ngIf="!hide" (click)="hideMenu()"></div>
+    <div class="list-group">
+
+        <a class="list-group-item  x-icon">
+            <i class="iconfont icon-feiji"> </i> &nbsp;&nbsp;&nbsp; 翻墙下载 <a href="/assets/shadowsocks/shadowsocks_settings.png" target="_blank"> 配置指南</a>
+        </a>
+        <a class="list-group-item x-icon" href="https://itunes.apple.com/us/app/shadowsocks/id665729974?ls=1&mt=8" target="_blank">
+            <i class="iconfont icon-ios"></i> IOS
+        </a>
+        <a class="list-group-item x-icon" *ngIf="!hide" href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank">
+            <i class="iconfont icon-android"> </i> 安卓
+        </a>
+        <a class="list-group-item x-icon" *ngIf="!hide" href="/assets/shadowsocks/shadowsocks-win10.zip" target="_blank">
+            <i class="iconfont icon-win1"> </i> win10
+        </a>
+
+        <a class="list-group-item" href="/assets/shadowsocks/shadowsocks-win7.rar" target="_blank">
+            <i class="iconfont icon-win"></i> win7
+
+        </a>
+
+
+        <div class="list-group-item">
+            主题:
+            <button-group [buttons]="theme.themes" [selectedButton]="theme.selected" (buttonClick)="updateTheme($event)"></button-group>
+        </div>
+
+        <button class="list-group-item" *ngIf="signedIn" (click)="handleSignOut()">
+    <i class="fa fa-sign-out"></i> Sign Out
+  </button>
+    </div>
+    <a class="list-group-item" (click)="showDevelopers=!showDevelopers">
+
+        <i class="iconfont icon-21"></i> 开发者 <i class="fa fa-bars " style="    float: right;
+line-height: 3rem;margin-right:1rem"></i>
+
+    </a>
+    <ng-container *ngIf="showDevelopers">
+        <a class="list-group-item" *ngFor="let developer of developers">
+
+            <i class="fa fa-heart text-danger"></i> {{developer.nickname}} <a>QQ: <i class="iconfont icon-qq"></i></a> <a> email:<i class="iconfont icon-EmailHili" ></i></a>
+
+        </a>
+    </ng-container>
+</div>

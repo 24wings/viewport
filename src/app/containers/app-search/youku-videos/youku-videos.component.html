@@ -1,0 +1,8 @@
+<loader [message]="'光速般加载'" [loading]="loading$ | async"></loader>
+<youtube-list
+  [list]="videos$ | async"
+  [queued]="playlistVideos$ | async"
+  (play)="playSelectedVideo($event)"
+  (queue)="queueSelectedVideo($event)"
+  (unqueue)="removeVideoFromPlaylist($event)"
+></youtube-list>
